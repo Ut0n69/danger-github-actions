@@ -1,10 +1,13 @@
 let isAllCheckPassed = true;
 
-if (danger.github.pr.title.includes('WIP')) {
-  fail(":rotating_light: Should NOT inclued 'WIP' in your PR title");
-}
+const ngWords = ['WIP', 'DNM'];
+ngWords.forEach(word => {
+  if (danger.github.pr.title.includes(word)) {
+    fail(`:rotating_light: Should NOT inclued '${word}' in your PR title`);
+  }  
+});
 
-if (!danger.github.pr.assignee) {
+if (!danger.github.pr.reviewer) {
   warn(":rotating_light: Should select PR reviewer");
   isAllCheckPassed = false;
 }
