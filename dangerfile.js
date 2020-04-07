@@ -7,12 +7,10 @@ ngWords.forEach(word => {
   }  
 });
 
-if (!danger.github.pr.reviewer) {
+if (!danger.github.pr.requested_reviewers) {
   warn(":rotating_light: Should select PR reviewer");
   isAllCheckPassed = false;
 }
-
-message(JSON.stringify(danger.github.pr))
 
 const hasIssuesNumber = /#[0-9]/.test(danger.github.pr.title);
 if (!hasIssuesNumber) {
